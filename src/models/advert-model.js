@@ -13,7 +13,6 @@ const Advert = sequelize.define('advert', {
     title: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: "someone"
     },
     category: {
         type: DataTypes.ARRAY(DataTypes.STRING),
@@ -27,7 +26,7 @@ const Advert = sequelize.define('advert', {
     status:
     {
         type: DataTypes.ENUM('draft', 'moderation', 'active', 'closed'),
-        default: 'active'
+        defaultValue: 'active'
     }
 }, {
     timestamps: false

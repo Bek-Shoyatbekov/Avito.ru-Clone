@@ -4,20 +4,31 @@ const User = require("../models/user-model");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
+
+
 const { Op } = require('sequelize');
 
 require('dotenv').config();
 
 require('dotenv').config();
 
+exports.getSignUp = async (req, res, next) => {
+    try {
+        return res.render('signUp', { pageTitle: "Sign up" });
+    } catch (error) {
+        return next(error);
+    }
+}
+
 exports.signUp = async (req, res, next) => {
     try {
-        const jwt_key = process.env.jwt_key;
         const isValidEmail = await User.findAll({
             where: {
-                [Op.or]: [{ email: req.body.email },
-                { username: req.body.username }
-                ]
+                [Op.or]:
+                    [
+                        { email: req.body.email },
+                        { username: req.body.username }
+                    ]
             }
         });
         if (isValidEmail.length == 0) {
@@ -43,14 +54,46 @@ exports.signUp = async (req, res, next) => {
             return res.send({ Message: "User already exist" });
         }
     } catch (error) {
-        console.log(error);
-        return res.status(500).send("Something broke!");
+        return next(error);
     }
-
 };
 
-exports.signIn = async (req, res, next) => {
+exports.getSignIn = async (req, res, next) => {
+    try {
+        return res.render('signIn', { pageTitle: "Sign In" });
+    } catch (error) {
+        return next(error);
+    }
+}
 
+exports.signIn = async (req, res, next) => {
+    try {
+        const { email, password } = req.body;
+
+        if (!(email && password)) {
+            return res.status(400).send("All input is required");
+        }
+        const user = await User.findAll({
+            where: {
+                email: email
+            }
+        });
+
+        if (user && (await bcrypt.compare(password, user.password))) {
+            const token = jwt.sign(
+                { id: user.id, email },
+                process.env.TOKEN_KEY,
+                {
+                    expiresIn: "2h",
+                }
+            );
+            user.token = token;
+            res.status(200).json(user);
+        }
+        res.status(400).send("Invalid Credentials");
+    } catch (err) {
+        return next(err);
+    }
 
 };
 

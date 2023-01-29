@@ -1,0 +1,40 @@
+<!-- @format -->
+
+<%- include('includes/head.ejs') %> <%- include('includes/nav.ejs') %>
+<link rel="stylesheet" href="/css/home.css" />
+<link rel="stylesheet" href="/css/signUp.css" />
+<style>
+  .centered {
+    margin-left: 5rem;
+    padding-right: 35rem;
+    padding-top: 5rem;
+  }
+  body {
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOS77uRTQja3NrupyoZHeRB7ufn4OF_BoGyBN0aFeU8RDDtdsOPfIAE6HJG1Yqt2hk5lU&usqp=CAU);
+  }
+</style>
+<div class="centered">
+  <form action="/me/signup" method="POST" style="text-align: center">
+    <h2 style="color: aliceblue">Sign Up</h2>
+    <div class="input-field">
+      <input
+        type="text"
+        name="username"
+        id="username"
+        placeholder="Enter Username" />
+    </div>
+    <div class="input-field">
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Enter Password" />
+    </div>
+    <div class="input-field">
+      <input type="email" name="email" id="email" placeholder="Enter Email" />
+    </div>
+    <input type="submit" value="Sign Up" />
+  </form>
+</div>
+
+<%-include('includes/end.ejs') %>

@@ -1,0 +1,37 @@
+<!-- @format -->
+
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="/css/home.css" />
+<link rel="stylesheet" href="/css/signUp.css" />
+<style>
+  body {
+    background-image: url(https://t3.ftcdn.net/jpg/01/22/71/96/360_F_122719641_V0yw2cAOrfxsON3HeWi2Sf4iVxhv27QO.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-clip: border-box;
+  }
+  .centered {
+    text-align: center;
+    margin-top: 10rem;
+    padding-right: 40rem;
+  }
+</style>
+<%- include('includes/nav.ejs') %>
+<div class="centered">
+  <form action="/me/signup" method="POST">
+    <h2>Sign In</h2>
+    <div class="input-field">
+      <input type="email" name="email" id="email" placeholder="Enter Email" />
+    </div>
+    <div class="input-field">
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Enter Password" />
+    </div>
+    <input type="submit" value="Sign In" />
+  </form>
+</div>
+
+<%-include('includes/end.ejs') %>
