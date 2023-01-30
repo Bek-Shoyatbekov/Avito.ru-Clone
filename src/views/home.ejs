@@ -6,13 +6,18 @@
   body {
     background-image: url(https://wallpaperaccess.com/full/2593042.jpg);
     background-repeat: no-repeat;
-    background-size: 100% ;
+    background-size: 100%;
     background-clip: border-box;
   }
 </style>
 <div class="main">
   <%- include('includes/nav.ejs') %>
   <br />
+  <% if(username || false){%>
+  <h1>Welcome <%= username %> to our world!</h1>
+  <% }else { %>
+  <h1>Welcome to our world!</h1>
+  <% } %>
 </div>
 
 <%-include('includes/end.ejs') %>

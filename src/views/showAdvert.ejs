@@ -1,5 +1,7 @@
 <!-- @format -->
 
+<!-- @format -->
+
 <%- include('includes/head.ejs') %>
 <link rel="stylesheet" href="/css/home.css" />
 <style>
@@ -17,8 +19,13 @@
 <div class="main">
   <%- include('includes/nav.ejs') %>
   <br />
-  <h1 style="text-align: center">Page Not found</h1>
-  <p> Message : <%=msg  %> </p>
+  <div class="card">
+    <img src="jeans3.jpg" alt="Denim Jeans" style="width: 100%" />
+    <h1>Tailored Jeans</h1>
+    <p class="price">$19.99</p>
+    <p>Some text about the jeans..</p>
+    <p><button>Add to Cart</button></p>
+  </div>
 </div>
 
 <%-include('includes/end.ejs') %>

@@ -2,27 +2,32 @@
 
 <nav class="dropdownmenu">
   <ul>
-    <li><a href="/">Home</a></li>
+    <li><a href="/me/home">Home</a></li>
     <li>
-      <a href="/about">About Me</a>
-    </li>
-    <li>
-      <a href="#">Articles on HTML5 & CSS3</a>
+      <a href="#">Category</a>
       <ul id="submenu">
         <li>
-          <a href="">Difference between SVG vs. Canvas</a>
+          <a href="">Cars</a>
         </li>
         <li>
-          <a href="">New features in HTML5</a>
+          <a href="">Houses</a>
         </li>
         <li>
-          <a href="">Creating links to sections within a webpage</a>
+          <a href="">Gadgets</a>
         </li>
       </ul>
     </li>
-    <li><a href="/me/signup">Sign Up</a></li>
+    <li>
+      <a href="/about">About</a>
+    </li>
+    <%if(signin) { %>
     <li>
       <a href="/me/signin">Sign In</a>
     </li>
+    <% }%> <%if(signup) { %>
+    <li><a href="/me/signup">Sign Up</a></li>
+    <% }%> <%if(registered) { %>
+    <li><a href="/product/add">Add product</a></li>
+    <% } %>
   </ul>
 </nav>

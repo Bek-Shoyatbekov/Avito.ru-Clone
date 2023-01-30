@@ -8,7 +8,7 @@ const Advert = sequelize.define('advert', {
         type: DataTypes.UUID,
         allowNull: false,
         primaryKey: true,
-       
+
     },
     title: {
         type: DataTypes.STRING,
@@ -22,6 +22,9 @@ const Advert = sequelize.define('advert', {
     },
     image: {
         type: DataTypes.ARRAY(DataTypes.STRING)
+    },
+    description: {
+        type: DataTypes.STRING
     },
     status:
     {

@@ -8,6 +8,8 @@ const Category = require('./src/models/category-model');
 
 const User = require('./src/models/user-model');
 
+const logger = require('morgan');
+
 const express = require('express');
 
 const connectDB = require('./src/utils/connectionDB');
@@ -73,32 +75,34 @@ app.set('trust proxy', true);
 
 const userRouter = require('./src/routes/user-route');
 
+const advertRouter = require('./src/routes/advert-route');
+
+app.use(logger('dev'));
+
 app.use((req, res, next) => {
     console.log(`Client Session ID:${req.session.id}`);
     console.log(`Request IP : ${req.ip}`);
+    console.log(`Request Url :${req.url}`);
     next()
 });
 
 
 app.use('/me', userRouter);
 
-app.get("/", (req, res, next) => {
+app.use('/product', advertRouter);
 
-    return res.render('home', { pageTitle: "Home" });
-});
 
 app.use('*', (req, res, next) => {
+    let signin = req.session.token ? false : true;
+    let signup = req.session.token ? false : true;
     try {
-        return res.render('404', { pageTitle: "Page not found" });
+        return res.render('404', { pageTitle: "Page not found", signup: signup, signin: signin, msg: "You might have mixed up", registered: true });
     } catch (error) {
         return next(error);
     }
 })
 
 app.use(error_handler);
-
-
-
 
 
 
