@@ -38,9 +38,6 @@ exports.addProduct = async (req, res, next) => {
                 status: status,
                 description: description
             });
-            await data.createUser(user)
-            let result = await data.save();
-            return res.status(201).send(result)
         } catch (error) {
             return next(error)
         }
